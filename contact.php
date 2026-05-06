@@ -2,8 +2,15 @@
 require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
-$page_title       = 'Contact Us - SchoolPulse';
-$page_description = 'Get in touch with the SchoolPulse team. We\'re here to help you transform your school management.';
+// Get site settings from database
+$site_name = get_setting($pdo, 'site_name', 'SchoolPulse');
+$contact_email = get_setting($pdo, 'contact_email', 'hello@schoolpulse.in');
+$contact_phone = get_setting($pdo, 'contact_phone', '+91 98765 43210');
+$address = get_setting($pdo, 'address', 'India');
+$whatsapp_number = get_setting($pdo, 'whatsapp_number', '919876543210');
+
+$page_title       = 'Contact Us - ' . $site_name;
+$page_description = 'Get in touch with the ' . $site_name . ' team. We\'re here to help you transform your school management.';
 $page_css         = ['assets/css/contact.css'];
 
 require_once 'includes/header.php';
@@ -69,7 +76,7 @@ require_once 'includes/header.php';
           <div class="c-info-icon"><i class="fas fa-map-marker-alt"></i></div>
           <div>
             <h4>Corporate HQ</h4>
-            <p>Tech Hub, 4th Floor, Sector 62,<br>Gurgaon, Haryana 122001, India</p>
+            <p><?php echo nl2br(htmlspecialchars($address)); ?></p>
           </div>
         </div>
         <div class="c-contact-pair">
@@ -77,14 +84,14 @@ require_once 'includes/header.php';
             <div class="c-info-icon blue"><i class="fas fa-phone"></i></div>
             <div>
               <div class="c-pair-label">Call Us</div>
-              <div class="c-pair-value">+91 123 456 7890</div>
+              <div class="c-pair-value"><?php echo htmlspecialchars($contact_phone); ?></div>
             </div>
           </div>
           <div class="c-contact-pair-item">
             <div class="c-info-icon amber"><i class="fas fa-envelope"></i></div>
             <div>
               <div class="c-pair-label">Email Us</div>
-              <div class="c-pair-value">hello@schoolpulse.in</div>
+              <div class="c-pair-value"><?php echo htmlspecialchars($contact_email); ?></div>
             </div>
           </div>
         </div>
@@ -150,8 +157,8 @@ require_once 'includes/header.php';
         <div class="c-map-card">
           <div class="c-map-icon"><i class="fas fa-building"></i></div>
           <h2>Visit Our Office</h2>
-          <p>Schedule a personal demo at our headquarters in Gurgaon's Tech District.</p>
-          <a href="https://maps.google.com/?q=Sector+62+Gurgaon+Haryana" target="_blank" rel="noopener" class="c-map-btn">
+          <p>Schedule a personal demo at our headquarters.</p>
+          <a href="https://maps.google.com/?q=<?php echo urlencode($address); ?>" target="_blank" rel="noopener" class="c-map-btn">
             <i class="fas fa-directions"></i> Get Directions
           </a>
         </div>
