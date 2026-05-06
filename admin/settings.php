@@ -12,7 +12,7 @@ $success_message = '';
 $error_message   = '';
 
 // ── Helper: upsert a setting ──────────────────────────────────────────────────
-function save_setting(PDO $pdo, string $key, string $value): void {
+function save_setting($pdo, string $key, string $value): void {
     $stmt = $pdo->prepare("
         INSERT INTO site_settings (setting_key, setting_value, updated_at)
         VALUES (?, ?, NOW())

@@ -1,8 +1,8 @@
 <?php
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'schoolpulse-marketing');
-define('DB_USER', 'root');
-define('DB_PASS', 'Root@123');
+define('DB_NAME', 'schoolpu_saas');
+define('DB_USER', 'schoolpu_saas');
+define('DB_PASS', 'p9ePShkbJbYtHAvCHFTJ');
 define('DB_CHARSET', 'utf8mb4');
 
 try {

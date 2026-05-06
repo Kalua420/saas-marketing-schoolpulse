@@ -30,7 +30,7 @@ function time_ago(string $datetime): string {
     return floor($time/86400).' days ago';
 }
 
-function get_setting(PDO $pdo, string $key, string $default = ''): string {
+function get_setting($pdo, string $key, string $default = ''): string {
     $stmt = $pdo->prepare("SELECT setting_value FROM site_settings WHERE setting_key = ?");
     $stmt->execute([$key]);
     $row = $stmt->fetch();
