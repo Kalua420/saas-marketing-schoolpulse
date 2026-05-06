@@ -25,8 +25,9 @@ function save_setting($pdo, string $key, string $value): void {
 if ($_POST && isset($_POST['action']) && $_POST['action'] === 'save_site_settings') {
     try {
         $fields = [
-            'site_name', 'site_tagline', 'contact_email',
-            'contact_phone', 'whatsapp_number', 'address', 'meta_description',
+            'site_name', 'site_tagline', 'contact_email', 'legal_email', 
+            'privacy_email', 'support_email', 'contact_phone', 'whatsapp_number', 
+            'address', 'meta_description',
         ];
         foreach ($fields as $key) {
             save_setting($pdo, $key, sanitizeInput($_POST[$key] ?? ''));
@@ -70,8 +71,9 @@ if ($_POST && isset($_POST['action']) && $_POST['action'] === 'change_password')
 
 // ── Load current settings ─────────────────────────────────────────────────────
 $settings_keys = [
-    'site_name', 'site_tagline', 'contact_email',
-    'contact_phone', 'whatsapp_number', 'address', 'meta_description',
+    'site_name', 'site_tagline', 'contact_email', 'legal_email',
+    'privacy_email', 'support_email', 'contact_phone', 'whatsapp_number', 
+    'address', 'meta_description',
 ];
 $settings = [];
 foreach ($settings_keys as $key) {
@@ -142,12 +144,51 @@ require_once 'includes/executive-header.php';
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 <div>
-<label for="contact_email" class="block text-sm font-ui-medium text-on-surface mb-2">Contact Email</label>
+<label for="contact_email" class="block text-sm font-ui-medium text-on-surface mb-2">
+Contact Email
+<span class="text-xs text-on-surface-variant font-normal">(General inquiries)</span>
+</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">mail</span>
 <input type="email" id="contact_email" name="contact_email" value="<?php echo htmlspecialchars($settings['contact_email']); ?>" placeholder="hello@schoolpulse.in" class="w-full pl-10 pr-4 py-2 rounded-[10px] border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm"/>
 </div>
 </div>
+<div>
+<label for="support_email" class="block text-sm font-ui-medium text-on-surface mb-2">
+Support Email
+<span class="text-xs text-on-surface-variant font-normal">(Technical support)</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">support_agent</span>
+<input type="email" id="support_email" name="support_email" value="<?php echo htmlspecialchars($settings['support_email']); ?>" placeholder="support@schoolpulse.in" class="w-full pl-10 pr-4 py-2 rounded-[10px] border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm"/>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+<div>
+<label for="legal_email" class="block text-sm font-ui-medium text-on-surface mb-2">
+Legal Email
+<span class="text-xs text-on-surface-variant font-normal">(Terms & legal matters)</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">gavel</span>
+<input type="email" id="legal_email" name="legal_email" value="<?php echo htmlspecialchars($settings['legal_email']); ?>" placeholder="legal@schoolpulse.in" class="w-full pl-10 pr-4 py-2 rounded-[10px] border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm"/>
+</div>
+</div>
+<div>
+<label for="privacy_email" class="block text-sm font-ui-medium text-on-surface mb-2">
+Privacy Email
+<span class="text-xs text-on-surface-variant font-normal">(Privacy & data requests)</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">shield_person</span>
+<input type="email" id="privacy_email" name="privacy_email" value="<?php echo htmlspecialchars($settings['privacy_email']); ?>" placeholder="privacy@schoolpulse.in" class="w-full pl-10 pr-4 py-2 rounded-[10px] border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm"/>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 <div>
 <label for="contact_phone" class="block text-sm font-ui-medium text-on-surface mb-2">Contact Phone</label>
 <div class="relative">
@@ -155,9 +196,6 @@ require_once 'includes/executive-header.php';
 <input type="text" id="contact_phone" name="contact_phone" value="<?php echo htmlspecialchars($settings['contact_phone']); ?>" placeholder="+91 98765 43210" class="w-full pl-10 pr-4 py-2 rounded-[10px] border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm"/>
 </div>
 </div>
-</div>
-
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 <div>
 <label for="whatsapp_number" class="block text-sm font-ui-medium text-on-surface mb-2">
 WhatsApp Number
@@ -168,13 +206,15 @@ WhatsApp Number
 <input type="text" id="whatsapp_number" name="whatsapp_number" value="<?php echo htmlspecialchars($settings['whatsapp_number']); ?>" placeholder="919876543210" class="w-full pl-10 pr-4 py-2 rounded-[10px] border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm"/>
 </div>
 </div>
-<div>
+</div>
+
+<div class="mb-4">
 <label for="address" class="block text-sm font-ui-medium text-on-surface mb-2">Address</label>
 <div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">location_on</span>
-<input type="text" id="address" name="address" value="<?php echo htmlspecialchars($settings['address']); ?>" placeholder="India" class="w-full pl-10 pr-4 py-2 rounded-[10px] border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm"/>
+<span class="material-symbols-outlined absolute left-3 top-3 text-on-surface-variant text-[18px]">location_on</span>
+<textarea id="address" name="address" rows="2" placeholder="Your company address..." class="w-full pl-10 pr-4 py-2 rounded-[10px] border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm resize-none"><?php echo htmlspecialchars($settings['address']); ?></textarea>
 </div>
-</div>
+<p class="text-xs text-on-surface-variant mt-1">Shown in footer and contact pages. Can be multi-line.</p>
 </div>
 
 <div class="mb-4">

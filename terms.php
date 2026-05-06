@@ -5,6 +5,7 @@ require_once 'includes/functions.php';
 // Get site settings from database
 $site_name = get_setting($pdo, 'site_name', 'SchoolPulse');
 $contact_email = get_setting($pdo, 'contact_email', 'hello@schoolpulse.in');
+$legal_email = get_setting($pdo, 'legal_email', 'legal@schoolpulse.in');
 $contact_phone = get_setting($pdo, 'contact_phone', '+91 98765 43210');
 $address = get_setting($pdo, 'address', 'India');
 
@@ -248,7 +249,7 @@ require_once 'includes/header.php';
           <span><strong><?php echo htmlspecialchars($site_name); ?></strong></span>
           <span><?php echo nl2br(htmlspecialchars($address)); ?></span>
           <span><?php echo htmlspecialchars($contact_phone); ?></span>
-          <a href="mailto:<?php echo htmlspecialchars($contact_email); ?>" class="legal-email"><?php echo htmlspecialchars($contact_email); ?></a>
+          <a href="mailto:<?php echo htmlspecialchars($legal_email); ?>" class="legal-email"><?php echo htmlspecialchars($legal_email); ?></a>
         </div>
       </div>
     </div>
