@@ -1,0 +1,364 @@
+/* =============================================================
+   THANK YOU PAGE — assets/css/thank-you.css
+   Design system: Poppins / Inter, navy + amber palette
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+/* ── Tokens ────────────────────────────────────────────────── */
+:root {
+  --ty-navy:         #0f172a;
+  --ty-navy-mid:     #1e293b;
+  --ty-blue:         #0058be;
+  --ty-blue-light:   #eff6ff;
+  --ty-amber:        #f59e0b;
+  --ty-amber-dark:   #d97706;
+  --ty-success:      #10b981;
+  --ty-success-bg:   rgba(16,185,129,.08);
+  --ty-surface:      #f8fafc;
+  --ty-white:        #ffffff;
+  --ty-border:       #e2e8f0;
+  --ty-border-faint: #f1f5f9;
+  --ty-text:         #0f172a;
+  --ty-text-muted:   #475569;
+  --ty-text-faint:   #94a3b8;
+  --ty-radius:       32px;
+  --ty-transition:   0.2s cubic-bezier(0.4,0,0.2,1);
+  --ty-font-display: 'Poppins', sans-serif;
+  --ty-font-body:    'Inter', sans-serif;
+  --ty-shadow:       0 20px 40px rgba(15,23,42,.08), 0 1px 4px rgba(15,23,42,.04);
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+#ty-page-wrap {
+  font-family: var(--ty-font-body);
+  color: var(--ty-text);
+  background: var(--ty-surface);
+  padding: 48px 32px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* ============================================================
+   CONFIRMATION CARD
+   ============================================================ */
+.ty-card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--ty-white);
+  border-radius: var(--ty-radius);
+  padding: 56px 64px;
+  box-shadow: var(--ty-shadow);
+  border: 1px solid var(--ty-border-faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: ty-rise 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes ty-rise {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ── Success icon ──────────────────────────────────────────── */
+.ty-icon-wrap {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--ty-success-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  animation: ty-pop 0.6s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes ty-pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.ty-icon-wrap .material-symbols-outlined {
+  font-size: 52px;
+  color: var(--ty-success);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+/* ── Heading ───────────────────────────────────────────────── */
+.ty-card h1 {
+  font-family: var(--ty-font-display);
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ty-navy);
+  margin: 0 0 14px;
+}
+
+.ty-card .ty-lead {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ty-text-muted);
+  max-width: 520px;
+  margin: 0 0 32px;
+}
+
+/* ── Next steps box ────────────────────────────────────────── */
+.ty-steps {
+  width: 100%;
+  background: var(--ty-surface);
+  border: 1px solid var(--ty-border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.ty-steps-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--ty-font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ty-navy);
+  margin: 0 0 18px;
+}
+
+.ty-steps-title .material-symbols-outlined {
+  color: var(--ty-amber);
+  font-size: 20px;
+}
+
+.ty-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ty-steps-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ty-text-muted);
+}
+
+.ty-steps-list li .material-symbols-outlined {
+  color: var(--ty-success);
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+/* ── CTA buttons ───────────────────────────────────────────── */
+.ty-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ty-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--ty-amber), var(--ty-amber-dark));
+  color: #fff;
+  font-family: var(--ty-font-body);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(245,158,11,.35);
+  transition: transform var(--ty-transition), box-shadow var(--ty-transition);
+}
+
+.ty-btn-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(245,158,11,.45);
+}
+
+.ty-btn-primary:active { transform: scale(0.97); }
+
+.ty-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--ty-blue);
+  font-family: var(--ty-font-body);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid var(--ty-blue);
+  cursor: pointer;
+  transition: background var(--ty-transition), color var(--ty-transition), transform var(--ty-transition);
+}
+
+.ty-btn-secondary:hover {
+  background: var(--ty-blue);
+  color: #fff;
+}
+
+.ty-btn-secondary:active { transform: scale(0.97); }
+
+/* ============================================================
+   DISCOVERY SECTION
+   ============================================================ */
+.ty-discover {
+  width: 100%;
+  max-width: 1024px;
+  margin-top: 64px;
+}
+
+.ty-discover-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.ty-discover-header h2 {
+  font-family: var(--ty-font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ty-navy);
+  margin: 0 0 10px;
+}
+
+.ty-discover-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--ty-amber);
+  border-radius: 9999px;
+  margin: 0 auto;
+}
+
+.ty-discover-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ── Discovery card ────────────────────────────────────────── */
+.ty-disc-card {
+  background: var(--ty-white);
+  border-radius: var(--ty-radius);
+  padding: 32px;
+  border: 1px solid var(--ty-border-faint);
+  box-shadow: 0 2px 8px rgba(15,23,42,.04);
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.ty-disc-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(15,23,42,.1);
+}
+
+.ty-disc-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: background var(--ty-transition);
+}
+
+.ty-disc-icon--blue   { background: rgba(0,88,190,.08);  color: var(--ty-blue);    }
+.ty-disc-icon--amber  { background: rgba(245,158,11,.1); color: var(--ty-amber);   }
+.ty-disc-icon--green  { background: rgba(16,185,129,.08);color: var(--ty-success); }
+
+.ty-disc-card:hover .ty-disc-icon--blue  { background: rgba(0,88,190,.15);  }
+.ty-disc-card:hover .ty-disc-icon--amber { background: rgba(245,158,11,.18);}
+.ty-disc-card:hover .ty-disc-icon--green { background: rgba(16,185,129,.15);}
+
+.ty-disc-icon .material-symbols-outlined { font-size: 24px; }
+
+.ty-disc-card h4 {
+  font-family: var(--ty-font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ty-navy);
+  margin: 0 0 10px;
+}
+
+.ty-disc-card p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ty-text-muted);
+  margin: 0 0 20px;
+  flex: 1;
+}
+
+.ty-disc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ty-blue);
+  text-decoration: none;
+  transition: gap var(--ty-transition), color var(--ty-transition);
+}
+
+.ty-disc-link:hover { gap: 8px; color: var(--ty-amber-dark); }
+
+.ty-disc-link .material-symbols-outlined { font-size: 16px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  #ty-page-wrap { padding: 32px 16px 64px; }
+
+  .ty-card { padding: 40px 24px; }
+
+  .ty-steps { padding: 22px 20px; }
+
+  .ty-discover-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .ty-card h1 { font-size: 26px; }
+
+  .ty-actions { flex-direction: column; width: 100%; }
+
+  .ty-btn-primary,
+  .ty-btn-secondary { justify-content: center; width: 100%; }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .ty-card, .ty-icon-wrap { animation: none; }
+  .ty-disc-card, .ty-btn-primary, .ty-btn-secondary { transition: none; }
+}
+
+.ty-btn-primary:focus-visible,
+.ty-btn-secondary:focus-visible,
+.ty-disc-link:focus-visible {
+  outline: 3px solid var(--ty-blue);
+  outline-offset: 3px;
+}

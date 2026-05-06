@@ -1,0 +1,36 @@
+Options -Indexes
+RewriteEngine On
+
+# Block direct access to includes and sensitive files
+RewriteRule ^includes/ - [F,L]
+
+# Allow profile pictures but block other uploads
+RewriteCond %{REQUEST_URI} !^/saas/assets/uploads/profiles/
+RewriteRule ^assets/uploads/ - [F,L]
+
+RewriteRule ^\.env$ - [F,L]
+RewriteRule ^database\.sql$ - [F,L]
+
+# Force HTTPS (uncomment on production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Cache static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>

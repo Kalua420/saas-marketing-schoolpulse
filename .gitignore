@@ -1,0 +1,65 @@
+# Node modules (used for testing only)
+node_modules/
+package-lock.json
+
+# Temporary test files
+_tmp_*.php
+_tmp_*.js
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment and configuration
+.env
+.env.local
+.env.*.local
+
+# Database credentials (if you create separate config)
+config.local.php
+
+# Logs
+*.log
+error_log
+debug.log
+
+# Uploaded files (profile pictures, etc.)
+assets/uploads/profiles/*.jpg
+assets/uploads/profiles/*.jpeg
+assets/uploads/profiles/*.png
+assets/uploads/profiles/*.gif
+assets/uploads/profiles/*.webp
+# Keep the .htaccess file in uploads
+!assets/uploads/profiles/.htaccess
+
+# Backup files
+*.bak
+*.backup
+*.sql.gz
+*.sql.zip
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# PHP
+vendor/
+composer.phar
+
+# Cache
+cache/
+*.cache
+
+# Session files
+sessions/
+
+# Kiro AI files (optional - remove if you want to track these)
+.kiro/
+
+# Documentation (optional - uncomment if you don't want to track docs)
+# *.md
+# !README.md
