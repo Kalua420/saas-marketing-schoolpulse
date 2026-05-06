@@ -3,11 +3,15 @@
 -- Host: 127.0.0.1    Database: schoolpulse_marketing
 -- ------------------------------------------------------
 -- Server version	8.0.44
+--
+-- IMPORTANT: Create database with UTF8MB4 charset
+-- CREATE DATABASE IF NOT EXISTS schoolpulse_marketing CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE schoolpulse_marketing;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
