@@ -1,6 +1,15 @@
 <?php
-$page_title       = 'Terms of Service | SchoolPulse';
-$page_description = 'Read the SchoolPulse Terms of Service. Understand your rights and responsibilities when using our school management platform.';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+// Get site settings from database
+$site_name = get_setting($pdo, 'site_name', 'SchoolPulse');
+$contact_email = get_setting($pdo, 'contact_email', 'hello@schoolpulse.in');
+$contact_phone = get_setting($pdo, 'contact_phone', '+91 98765 43210');
+$address = get_setting($pdo, 'address', 'India');
+
+$page_title       = 'Terms of Service | ' . $site_name;
+$page_description = 'Read the ' . $site_name . ' Terms of Service. Understand your rights and responsibilities when using our school management platform.';
 $page_css         = ['assets/css/legal.css'];
 
 require_once 'includes/header.php';
@@ -12,7 +21,7 @@ require_once 'includes/header.php';
 <section class="legal-hero">
   <div class="legal-hero-inner">
     <h1>Terms of Service</h1>
-    <p class="legal-hero-sub">Last updated: January 1, 2024 &nbsp;·&nbsp; Please read these terms carefully before using SchoolPulse.</p>
+    <p class="legal-hero-sub">Last updated: January 1, 2024 &nbsp;·&nbsp; Please read these terms carefully before using <?php echo htmlspecialchars($site_name); ?>.</p>
   </div>
 </section>
 
@@ -26,7 +35,7 @@ require_once 'includes/header.php';
         <span class="legal-section-num">1</span>
         <h2>Acceptance of Terms</h2>
       </div>
-      <p>By accessing or using the SchoolPulse platform ("Service"), provided by SchoolPulse Systems, you agree to be bound by these Terms of Service. If you are entering into this agreement on behalf of a school, educational institution, or other legal entity, you represent that you have the authority to bind such entity to these terms.</p>
+      <p>By accessing or using the <?php echo htmlspecialchars($site_name); ?> platform ("Service"), provided by <?php echo htmlspecialchars($site_name); ?>, you agree to be bound by these Terms of Service. If you are entering into this agreement on behalf of a school, educational institution, or other legal entity, you represent that you have the authority to bind such entity to these terms.</p>
       <p>If you do not agree with any of these terms, you are prohibited from using our services.</p>
     </div>
 
@@ -36,7 +45,7 @@ require_once 'includes/header.php';
         <span class="legal-section-num">2</span>
         <h2>Description of Service</h2>
       </div>
-      <p>SchoolPulse provides a comprehensive cloud-based enterprise resource planning (ERP) and student information system designed to optimize administrative efficiency, academic tracking, and communication within educational institutions. The Service includes:</p>
+      <p><?php echo htmlspecialchars($site_name); ?> provides a comprehensive cloud-based enterprise resource planning (ERP) and student information system designed to optimize administrative efficiency, academic tracking, and communication within educational institutions. The Service includes:</p>
       <ul>
         <li>Student information management</li>
         <li>Academic and administrative tools</li>
@@ -118,7 +127,7 @@ require_once 'includes/header.php';
       </div>
       <div class="legal-subsection">
         <h3>6.1 Subscription Fees</h3>
-        <p>Access to SchoolPulse is provided on a subscription basis. You agree to pay all applicable fees as described in your chosen plan.</p>
+        <p>Access to <?php echo htmlspecialchars($site_name); ?> is provided on a subscription basis. You agree to pay all applicable fees as described in your chosen plan.</p>
 
         <h3>6.2 Billing</h3>
         <ul>
@@ -141,7 +150,7 @@ require_once 'includes/header.php';
       </div>
       <div class="legal-subsection">
         <h3>7.1 Our Rights</h3>
-        <p>SchoolPulse and all related trademarks, logos, and intellectual property are owned by us. You may not use our intellectual property without written permission.</p>
+        <p><?php echo htmlspecialchars($site_name); ?> and all related trademarks, logos, and intellectual property are owned by us. You may not use our intellectual property without written permission.</p>
 
         <h3>7.2 Your Rights</h3>
         <p>You retain all rights to your content and data. By using our service, you grant us a limited license to process and display your content as necessary to provide our services.</p>
@@ -236,10 +245,10 @@ require_once 'includes/header.php';
         <h4>Legal Contact &amp; Jurisdiction</h4>
         <p>For questions about these terms or to reach our legal team, use the contact details below.</p>
         <div class="legal-contact-details">
-          <span><strong>SchoolPulse Systems Private Limited</strong></span>
-          <span>Cyber City, Phase 2, Gurugram, Haryana 122002</span>
-          <span>+91 12345 67890</span>
-          <a href="mailto:legal@schoolpulse.in" class="legal-email">legal@schoolpulse.in</a>
+          <span><strong><?php echo htmlspecialchars($site_name); ?></strong></span>
+          <span><?php echo nl2br(htmlspecialchars($address)); ?></span>
+          <span><?php echo htmlspecialchars($contact_phone); ?></span>
+          <a href="mailto:<?php echo htmlspecialchars($contact_email); ?>" class="legal-email"><?php echo htmlspecialchars($contact_email); ?></a>
         </div>
       </div>
     </div>

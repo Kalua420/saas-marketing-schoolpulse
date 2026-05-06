@@ -1,6 +1,15 @@
 <?php
-$page_title       = 'Privacy Policy | SchoolPulse';
-$page_description = 'Read the SchoolPulse Privacy Policy. Learn how we collect, use, and protect your data and student information.';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+// Get site settings from database
+$site_name = get_setting($pdo, 'site_name', 'SchoolPulse');
+$contact_email = get_setting($pdo, 'contact_email', 'hello@schoolpulse.in');
+$contact_phone = get_setting($pdo, 'contact_phone', '+91 98765 43210');
+$address = get_setting($pdo, 'address', 'India');
+
+$page_title       = 'Privacy Policy | ' . $site_name;
+$page_description = 'Read the ' . $site_name . ' Privacy Policy. Learn how we collect, use, and protect your data and student information.';
 $page_css         = ['assets/css/legal.css'];
 
 require_once 'includes/header.php';
@@ -132,7 +141,7 @@ require_once 'includes/header.php';
         <li><strong>Portability:</strong> Export your data in a standard format</li>
         <li><strong>Opt-out:</strong> Unsubscribe from marketing communications</li>
       </ul>
-      <p>To exercise these rights, contact us at <a href="mailto:privacy@schoolpulse.in">privacy@schoolpulse.in</a></p>
+      <p>To exercise these rights, contact us at <a href="mailto:<?php echo htmlspecialchars($contact_email); ?>"><?php echo htmlspecialchars($contact_email); ?></a></p>
     </div>
 
     <!-- 7 -->
@@ -201,10 +210,10 @@ require_once 'includes/header.php';
         <h4>Privacy Team</h4>
         <p>Our dedicated privacy team is available to answer any questions about how we handle your data.</p>
         <div class="legal-contact-details">
-          <span><strong>SchoolPulse Systems Private Limited</strong></span>
-          <span>Cyber City, Phase 2, Gurugram, Haryana 122002</span>
-          <span>+91 12345 67890</span>
-          <a href="mailto:privacy@schoolpulse.in" class="legal-email">privacy@schoolpulse.in</a>
+          <span><strong><?php echo htmlspecialchars($site_name); ?></strong></span>
+          <span><?php echo nl2br(htmlspecialchars($address)); ?></span>
+          <span><?php echo htmlspecialchars($contact_phone); ?></span>
+          <a href="mailto:<?php echo htmlspecialchars($contact_email); ?>" class="legal-email"><?php echo htmlspecialchars($contact_email); ?></a>
         </div>
       </div>
     </div>
