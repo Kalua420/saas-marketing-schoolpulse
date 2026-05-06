@@ -1,3 +1,19 @@
+    <?php
+    // Get site settings from database if not already loaded
+    if (!isset($site_name)) {
+        $site_name = get_setting($pdo, 'site_name', 'SchoolPulse');
+    }
+    if (!isset($contact_email)) {
+        $contact_email = get_setting($pdo, 'contact_email', 'hello@schoolpulse.in');
+    }
+    if (!isset($contact_phone)) {
+        $contact_phone = get_setting($pdo, 'contact_phone', '+91 98765 43210');
+    }
+    if (!isset($address)) {
+        $address = get_setting($pdo, 'address', 'India');
+    }
+    $site_tagline = get_setting($pdo, 'site_tagline', 'The Complete School Management System');
+    ?>
     <footer class="footer">
         <div class="container">
 
@@ -5,7 +21,7 @@
 
                 <!-- Brand -->
                 <div class="footer-brand">
-                    <span class="footer-brand-name">SchoolPulse</span>
+                    <span class="footer-brand-name"><?php echo htmlspecialchars($site_name); ?></span>
                     <p class="footer-brand-desc">India's leading school management system designed to bring modern administrative solutions to educational institutions. Streamlining operations from admissions to alumni.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -43,12 +59,12 @@
                     <div class="footer-contact-list">
                         <div class="footer-contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>hello@schoolpulse.in</span>
+                            <span><?php echo htmlspecialchars($contact_email); ?></span>
                         </div>
                         <div class="footer-contact-item">
                             <i class="fas fa-phone"></i>
                             <div>
-                                <div>+91 98765 43210</div>
+                                <div><?php echo htmlspecialchars($contact_phone); ?></div>
                                 <div class="footer-whatsapp">
                                     <i class="fas fa-check-circle"></i>
                                     WhatsApp Support Active
@@ -57,7 +73,7 @@
                         </div>
                         <div class="footer-contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Level 4, Dynasty Business Park,<br>Andheri East, Mumbai 400059</span>
+                            <span><?php echo nl2br(htmlspecialchars($address)); ?></span>
                         </div>
                     </div>
                 </div>
@@ -82,7 +98,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="footer-bottom-inner">
-                    <p>© <?php echo date('Y'); ?> SchoolPulse. All rights reserved. Providing modern administrative solutions for Indian education.</p>
+                    <p>© <?php echo date('Y'); ?> <?php echo htmlspecialchars($site_name); ?>. All rights reserved. Providing modern administrative solutions for Indian education.</p>
                     <div class="footer-bottom-badges">
                         <span class="footer-bottom-badge">
                             <i class="fas fa-shield-alt"></i> ISO 27001 Certified
